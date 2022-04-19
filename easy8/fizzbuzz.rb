@@ -44,6 +44,15 @@ A: Algorithm
     - Return 'Buzz'
 - Return result array.
 
+Data Structure, Algorithm
+------------------------------------------
+- Iterate from start_num to end_num
+  - Initialize an empty result string.
+    - If divisible by 3, append "Fizz" to the string.
+    - If divisible by 5, append "Buzz" to the string.
+  - If result string is not empty, print it.
+  - If result string is empty, print the current number
+
 C: Code
 =end
 
@@ -70,6 +79,15 @@ def fizzbuzz(start_num, end_num)
     fb == '' ? num : fb
   end
     .join(', ')
+end
+
+def fizzbuzz(start_num, end_num)
+  (start_num..end_num).map do |i|
+    result = ''
+    result << 'Fizz' if i % 3 == 0
+    result << 'Buzz' if i % 5 == 0
+    result.empty? ? i : result
+  end.join(', ')
 end
 
 p fizzbuzz(1, 15)

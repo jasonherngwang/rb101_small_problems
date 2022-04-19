@@ -62,6 +62,15 @@ C: Code
 #   str
 # end
 
+# WORD_TO_DIGIT = %w(zero one two three four five six seven eight nine).zip('0'..'9').to_h
+
+# def word_to_digit(str)
+#   WORD_TO_DIGIT.each do |word, digit|
+#     str.gsub!(word, digit)
+#   end
+#   str
+# end
+
 # p word_to_digit('Please call me at five five five one two three four. Thanks.')
 # p word_to_digit('Please call me at Five fIve fiVE ONE two three four. Thanks.')
 
@@ -124,5 +133,7 @@ end
 #   end
 #   result
 # end
+
+
 
 p word_to_digit('Please call me at nine one one five five five one two three four. Thanks.')

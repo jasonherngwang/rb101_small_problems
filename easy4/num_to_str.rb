@@ -55,6 +55,17 @@ def signed_integer_to_string(num)
   sign + integer_to_string(num)
 end
 
+def signed_integer_to_string(num)
+  sign = (
+    case
+    when num < 0 then '-'
+    when num > 0 then '+'
+    else              ''
+    end
+  )
+  sign + integer_to_string(num.abs)
+end
+
 p signed_integer_to_string(4321) == '+4321'
 p signed_integer_to_string(-123) == '-123'
 p signed_integer_to_string(0) == '0'

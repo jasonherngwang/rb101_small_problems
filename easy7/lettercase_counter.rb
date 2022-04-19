@@ -92,14 +92,49 @@ def letter_case_count(str)
 end
 
 
-# Approach 4
-# def letter_case_count(str)
-#   {
-#     :lowercase: str.count('a-z'),
-#     :uppercase: str.count('A-Z'),
-#     :neither: str.count('^A-Za-z'),
-#   }
-# end
+def letter_case_count(str)
+  result = { lowercase: 0, uppercase: 0, neither: 0 }
+  str.each_char do |char|
+    case char
+    when 'a'..'z' then result[:lowercase] += 1
+    when 'A'..'Z' then result[:uppercase] += 1
+    else               result[:neither] += 1
+    end
+  end
+  result
+end
+
+def letter_case_count(str)
+  result = { lowercase: 0, uppercase: 0, neither: 0 }
+  str.each_char do |char|
+    case
+    when char =~ /[a-z]/ then result[:lowercase] += 1
+    when char =~ /[A-Z]/ then result[:uppercase] += 1
+    else                      result[:neither] += 1
+    end
+  end
+  result
+end
+    
+def letter_case_count(str)
+  result = { lowercase: 0, uppercase: 0, neither: 0 }
+  str.each_char do |char|
+    case
+    when char.match?(/[a-z]/) then result[:lowercase] += 1
+    when char.match?(/[A-Z]/) then result[:uppercase] += 1
+    else                      result[:neither] += 1
+    end
+  end
+  result
+end
+    
+def letter_case_count(str)
+  { 
+    lowercase: str.count('a-z'),
+    uppercase: str.count('A-Z'), 
+    neither: str.count('^a-zA-Z') 
+  }
+end
 
 p letter_case_count('abCdef 123') `=`= { lowercase: 5, uppercase: 1, neither: 4 }
 p letter_case_count('AbCd +Ef') == { lowercase: 3, uppercase: 3, neither: 2 }

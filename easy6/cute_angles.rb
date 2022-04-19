@@ -104,3 +104,108 @@ puts dms(360) == %(360°00'00") || dms(360) == %(0°00'00")
 puts dms(400) == %(40°00'00")
 puts dms(-40) == %(320°00'00")
 puts dms(-420) == %(300°00'00")
+
+
+=begin
+Second attempt
+
+P: Understand the Problem
+--------------------------------------------------------------------------------
+Problem Statement
+Write a method that takes a float representing an angle between 0-360 deg and returns a String representing that angle in degrees (°), minutes ('), and seconds (").
+Degree = 60 minutes
+Minute = 60 seconds.
+
+DEGREE = "\xC2\xB0"
+
+Inputs: 1 float between 0.0 and 360.0
+- Data types always the same? Yes, a Floar
+- Edge cases (emptiness, zero, negative, case-sensitivity, boundary conditions)
+  - Input is bound between 0 and 360. No negatives.
+  - Empty input? Do not consider
+- Validate input? No
+
+Outputs: 1 String
+- Print or return? Return new object or mutate existing?
+- Does element order matter?
+- How to handle duplicates?
+
+Explicit Requirements
+- 360 degrees can be represented as 360 or 0 deg.
+- 0 deg must be represented as 0 deg.
+
+Implicit Requirements - Review problem and examples
+- Minutes and seconds are 0-padded to 2 digits.
+- Some rounding may be used.
+
+Clarifying Questions
+- Any domain-specific terms?
+
+
+E: Examples, Test Cases, Edge Cases
+--------------------------------------------------------------------------------
+Case: 
+Inputs: 76.73
+Outputs: %(76°43'48")
+Convert to seconds: 76.73 * 3600 = 276228. Round to 0 decimal places.
+Integer division by 60 to find whole degrees: 76. Save the remainder: 2628.
+Integer division by 60 to find whole minutes: 43. Remainder is seconds: 48.
+
+
+D: Data Structure
+--------------------------------------------------------------------------------
+Input: Float
+Intermediate: Floats, for math operations. 
+Output: String
+
+
+A: Algorithm
+--------------------------------------------------------------------------------
+Pseudo-code:
+- Multiple angle by 3600 and round to 0 decimal places.
+- Integer division by 60. Quotient is the degrees. Store remainder.
+- Integer division by 60. Quotient is the minutes.
+- Remainder is the seconds.
+- Format to the specified format.
+
+
+Helper method: Format the numbers into the specified format
+
+
+C: Code
+--------------------------------------------------------------------------------
+=end
+
+DEGREE = "\xC2\xB0"
+
+def format_deg(deg, min, sec)
+  format(%(%d#{DEGREE}%02d'%02d"), deg, min, sec)
+end
+
+# puts format_deg(12, 24, 45)
+
+def normalize(angle)
+  while angle < 0
+    angle += 360
+  end
+  angle % 360
+end
+
+def dms(angle)
+  angle = normalize(angle)
+  total_sec = angle * 3600
+  deg, remainder = total_sec.divmod(3600)
+  min, sec = remainder.divmod(60)
+  format_deg(deg, min, sec)
+end
+
+p dms(30) == %(30°00'00")
+p dms(76.73) == %(76°43'48")
+p dms(254.6) == %(254°36'00")
+p dms(93.034773) == %(93°02'05")
+p dms(0) == %(0°00'00")
+p dms(360) == %(360°00'00") || dms(360) == %(0°00'00")
+
+p dms(400) == %(40°00'00")
+p dms(-40) == %(320°00'00")
+p dms(-420) == %(300°00'00")

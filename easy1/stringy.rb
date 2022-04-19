@@ -81,10 +81,7 @@ def stringy(n)
   str
 end
 
-puts stringy(6) == '101010'
-puts stringy(9) == '101010101'
-puts stringy(4) == '1010'
-puts stringy(7) == '1010101'
+
 
 def stringy(n, start = '1')
   str = (start == '1' ? '10' : '01') * (n / 2)
@@ -92,7 +89,20 @@ def stringy(n, start = '1')
   str
 end
 
-puts stringy(6, start = '0') == '010101'
-puts stringy(9, start = '0') == '010101010'
-puts stringy(4, start = '0') == '0101'
-puts stringy(7, start = '0') == '0101010'
+p stringy(6) == '101010'
+p stringy(9) == '101010101'
+p stringy(4) == '1010'
+p stringy(7) == '1010101'
+
+def stringy(n, start=1)
+  [start, (start-1).abs].cycle.take(n).join
+end
+
+p stringy(6, start=1) == '101010'
+p stringy(9, start=1) == '101010101'
+p stringy(4, start=1) == '1010'
+p stringy(7, start=1) == '1010101'
+p stringy(6, start=0) == '010101'
+p stringy(9, start=0) == '010101010'
+p stringy(4, start=0) == '0101'
+p stringy(7, start=0) == '0101010'

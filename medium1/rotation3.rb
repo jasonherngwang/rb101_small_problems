@@ -104,6 +104,15 @@ def max_rotation(num)
   digits.join.to_i
 end
 
+def max_rotation(num)
+  return num if num < 10
+  (num.digits.size).downto(2).each do |i|
+    num = rotate_rightmost_digits(num, i)
+  end
+  num
+end
+
+
 
 p max_rotation(735291)# == 321579
 p max_rotation(735000291)

@@ -1,26 +1,40 @@
 =begin
-Return ASCII string value (sum of all ASCII value of the characters) of a string.
-
 P
-Inputs: 1 string
-Outputs: 1 integer
+Write a method that returns the ASCII string value of a string, which is the sum of the ASCII values of every character.
+Inputs: 1 string of 0 or more characters, including spaces and punctuation.
+Outputs: 
+
 Requirements:
-- Use String#ord
-Questions:
+- May use String#ord method to find the ASCII value of one character.
+- Must account for ASCII values of non-letter characters.
 
-E
+Example:
+Input: 'Four score'
 
-D
-
+F  70
+o  111
+u  117
+r  114
+   32
+s  115
+c  99
+o  111
+r  114
+e  101
+------
+   984
+   
 A
-- Split string into character array.
-- Iterate across the array, returning an array of ASCII values.
-- Sum the array
+- Split the string into characters.
+- Invoke the String#ord method on each character to find the ASCII value.
+- Sum the ASCII values. Return.
+
 =end
 
 def ascii_value(str)
   # str.chars.map { |char| char.ord }
   #   .sum
+  # str.chars.reduce(0) { |sum, char| sum + char.ord }
   str.bytes.sum
 end
 

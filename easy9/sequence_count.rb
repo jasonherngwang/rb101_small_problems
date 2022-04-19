@@ -53,6 +53,25 @@ A: Algorithm
 C: Code
 =end
 
+# Accumulator version
+def sequence(count, start_num)
+  result = []
+  count.times do |i|
+    result << (i + 1) * start_num
+  end
+  result
+end
+
+def sequence(count, start_num)
+  result = []
+  sum = start_num
+  count.times do
+    result << sum
+    sum += start_num
+  end
+  result
+end
+
 def sequence(count, start_num)
   # (1..count).map { |x| x * start_num}
   count.times.map { |x| (x + 1) * start_num}

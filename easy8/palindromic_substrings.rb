@@ -57,8 +57,17 @@ def substrings(str)
 end
 
 def palindromes(str)
+  substrings(str).select { |s| s == s.reverse && s.size > 1 }
+end
+
+def palindromes(str)
   substrings(str.delete '^a-zA-Z0-9')
     .select { |s| s.downcase == s.downcase.reverse && s.length > 1 }
+end
+
+def palindromes(str)
+  substrings(str.gsub(/[^a-z0-9]/i, ''))
+    .select { |s| s == s.reverse && s.size > 1 }
 end
 
 p palindromes('abcd')# == []

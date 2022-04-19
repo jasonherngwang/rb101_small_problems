@@ -57,6 +57,11 @@ def sum_of_sums(array)
   result.sum
 end
 
+
+def sum_of_sums(arr)
+  (0..arr.size - 1).map { |i| arr[0..i].sum }.sum
+end
+
 def sum_of_sums(array)
   array.map.with_index { |_, index| array[0..index].sum }.sum
 end

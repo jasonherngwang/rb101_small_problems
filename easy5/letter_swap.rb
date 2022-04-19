@@ -49,6 +49,13 @@ A: Algorithm
 C: Code
 =end
 
+def swap_first_last_char(str)
+  return str if str.size <= 1
+  str_swapped = str.dup
+  str_swapped[0], str_swapped[-1] = str_swapped[-1], str_swapped[0]
+  str_swapped
+end
+
 def swap_first_last(str)
   return str if str.length == 1
   str[-1] + str[1, str.length - 2] + str[0]

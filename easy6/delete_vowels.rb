@@ -51,3 +51,82 @@ end
 p remove_vowels(%w(abcdefghijklmnopqrstuvwxyz)) == %w(bcdfghjklmnpqrstvwxyz)
 p remove_vowels(%w(green YELLOW black white)) == %w(grn YLLW blck wht)
 p remove_vowels(%w(ABC AEIOU XYZ)) == ['BC', '', 'XYZ']
+
+
+=begin
+Second attempt
+Completed in <8 min
+
+P: Understand the Problem
+--------------------------------------------------------------------------------
+Problem Statement
+Write a method that takes an array of strings and returns an array of the same string values, with vowels removed from each string.
+
+Inputs: Array of Strings
+- Data types always the same? Yes
+- Edge cases (emptiness, zero, negative, case-sensitivity, boundary conditions)
+  - Empty input array? Return empty array.
+  - Empty string object in array? Return empty strings at those positions.
+  - Case sensitive? Yes, do not modify case of any characters.
+- Validate input? N/A
+
+Outputs:
+- Print or return? Return new object or mutate existing?
+  - New array of strings.
+- Does element order matter?
+  - Same order as original array.
+- How to handle duplicates? N/A
+
+Explicit Requirements
+- New array must be same length as input array.
+
+Implicit Requirements - Review problem and examples
+- 
+
+Clarifying Questions
+- Any domain-specific terms?
+
+
+E: Examples, Test Cases, Edge Cases
+--------------------------------------------------------------------------------
+Case: 
+Inputs: %w(green YELLOW black white)
+Outputs: %w(grn YLLW blck wht)
+green: Remove 'e' and 'e'
+YELLOW: Remove 'E' and 'O'
+black: Remove 'a'
+white: Remove 'i' and 'e'
+
+
+D: Data Structure
+--------------------------------------------------------------------------------
+Input: Array
+Intermediate: Array
+- Use collection methods such as filtering
+Output: Array
+
+
+A: Algorithm
+--------------------------------------------------------------------------------
+Pseudo-code:
+- Iterate over strings in input array.
+  - Use helper method to delete vowels.
+- Return array
+
+Helper method: Delete vowels
+- Use String delete method.
+
+
+C: Code
+--------------------------------------------------------------------------------
+=end
+
+def remove_vowels(arr)
+  # arr.map { |word| word.delete('aeiouAEIOU') }
+  # arr.map { |word| word.gsub(/[aeiou]/i, '') }
+  arr.map { |word| word.tr('aeiouAEIOU', '') }
+end
+
+p remove_vowels(%w(abcdefghijklmnopqrstuvwxyz)) == %w(bcdfghjklmnpqrstvwxyz)
+p remove_vowels(%w(green YELLOW black white)) == %w(grn YLLW blck wht)
+p remove_vowels(%w(ABC AEIOU XYZ)) == ['BC', '', 'XYZ']

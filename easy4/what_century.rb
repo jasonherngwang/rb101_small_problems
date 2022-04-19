@@ -1,5 +1,7 @@
 =begin
 P
+Given a year, return a string representing the century. The string should end in the appropriate suffix for that number: 'st, 'nd', 'rd, 'th'
+
 Input: A year, as an integer
 Output: The century, as a string
 
@@ -7,7 +9,7 @@ Requirements
 - The century string must end in 'st', 'nd', 'rd', or 'th'.
 - Century is defined as "rounding up" to the next hundred years
   - After rounding up, perform integer division and take the quotient.
-  - Divident / Divisor = Quotient + Remainder
+  - Dividend / Divisor = Quotient + Remainder
 
 Questions:
 - What year does a century start in? 2000 or 2001?
@@ -25,6 +27,45 @@ century(10103) == '102nd'
 century(1052) == '11th'
 century(1127) == '12th'
 century(11201) == '113th'
+
+Case: 
+Inputs: 2000
+Outputs: '20th'
+Step-by-step
+Is a multiple of 100 => 20th
+
+Inputs: 2001
+Outputs: '21st'
+Step-by-step
+Next multiple of 100 is 2100 => 21st
+
+Inputs: 1965
+Outputs: '20th'
+Step-by-step
+1965: Next multiple of 100 is 2000. => 20th
+
+Inputs: 11201
+Outputs: '113th'
+Step-by-step
+11201: Next multiple of 100 is 11300. => 113th
+
+Edge case: input of 0
+Outputs: 0th century.
+
+Number ending => Word ending
+1st
+2nd
+3rd
+4-20th
+21st
+22nd
+23rd
+24th
+...
+29th
+30th
+
+Exception is 11-13 which end in th
 
 D
 Integer input.
@@ -47,6 +88,29 @@ Format the output string
 - Lookup the suffix using the last digit of the century year.
 - Convert the century integer to a string, and concatenate with the suffix.
 - Return this new string.
+
+Pseudo-code:
+- If year is 0, return '0th century'.
+
+- Find the next multiple of 100. This is the century number.
+  - Check if the current number is already a multiple of 100.
+    - If so, return num / 100.
+    - Else, return num / 100 + 1
+- Invoke helper method to find suffix.
+- Append suffix to century number, and return
+
+Helper Methods: Century suffix
+- Takes 1 parameter, the century year (Integer).
+- Find the appropriate word ending: 'st', 'nd', 'rd, or 'th.
+  - Potential inputs: Any integer >= 1
+  - Find the remainder after dividing by 100. This converts all numbers over 99 to a 2-digit number.
+  - Check special cases:
+    - 11, 12, 13. If one of these, return 'th'.
+    - Last digit is:
+      1: 'st'
+      2: 'nd'
+      3: 'rd' 
+  - Else, return 'th'.
 
 C
 

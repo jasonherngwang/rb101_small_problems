@@ -48,6 +48,11 @@ Split and join with comma.
 C: Code
 =end
 
+
+def swap_name(name)
+  name.gsub(/(\w+) (\w+)/, '\2, \1')
+end
+
 def swap_name(name)
   name.split.reverse.join(', ')
 end

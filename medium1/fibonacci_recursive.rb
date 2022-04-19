@@ -38,9 +38,17 @@ Consider:
 - Exceptions
 - Missing arguments
 
-Case: 
-Inputs: 
-Outputs:
+Inputs: 3
+Outputs: 2
+Invocation: n = 3, return fibonacci(2) + fibonacci(1) == 1 + 1 == 2
+
+Input: 4
+Output: 3
+Invocation: n = 4
+return fibonacci(3) + fibonacci(2) == 
+(return fibonacci(2) + fibonacci(1)) + 1 == 
+(1 + 1) + 1 == 
+3
 
 
 D: Data Structure

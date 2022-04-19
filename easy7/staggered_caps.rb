@@ -40,6 +40,12 @@ Use either an array-of-chars approach, or iterate-thru-chars.
 C: Code
 =end
 
+def staggered_case(str)
+  str.chars.map.with_index do |char, i|
+    i.even? ? char.upcase : char.downcase
+  end.join
+end
+
 def staggered_case(str, first_char_capital: true)
   str.chars.map do |char|
     transformed_char = first_char_capital ? char.upcase : char.downcase
@@ -78,6 +84,16 @@ def staggered_case(str, first_char_capital: true, count_nonalpha_chars: false)
     end
   end
   result
+end
+
+def staggered_case(str)
+  require_uppercase = true
+  str.chars.map do |char|
+    next char if char =~ /[^a-zA-Z]/
+    new_char = require_uppercase ? char.upcase : char.downcase
+    require_uppercase = !require_uppercase
+    new_char
+  end.join
 end
 
 

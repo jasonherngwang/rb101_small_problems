@@ -163,3 +163,80 @@ p time_of_day2(800)
 p time_of_day2(-4231)
 p time_of_day2(1440)
 p time_of_day2(-1440)
+
+=begin
+P
+The time of day can be represented as the number of minutes before or after midnight.
+If the number is positive, the time is after midnight.
+If the number is negative, the time is before midnight.
+
+Write a method that takes an integer representing the number of minutes before or after midnight, and returns the time of day in hh:mm format.
+
+time_of_day(0) == "00:00"
+time_of_day(-3) == "23:57"
+time_of_day(35) == "00:35"
+time_of_day(-1437) == "00:03"
+time_of_day(3000) == "02:00"
+time_of_day(800) == "13:20"
+time_of_day(-4231) == "01:29"
+
+Requirements:
+- Do not use the Date and Time classes.
+- Day starts at 00:00
+- There are 1440 minutes in a day.
+  - If the input exceeds 1440, it starts over from 0.
+- 1000 minutes past midnight is the same as 440 minutes before midnight.
+- 1441 minutes past midnight is the same as 1 minute past midnight.
+- Output string format is zero-padded, 2 digits. Applies to both hours and minutes.
+
+Example: 
+Input: 3000
+Output: "02:00"
+3000 % 1440 == 120
+Hours: 120 / 60 == 2, with remainder of 0.
+
+Input: -4231
+Output: "01:29"
+-4231 + 1440 * 3 = 89
+Hours: 89 / 60 == 1 hours, remainder 29 minutes
+   
+A
+- If number is < 0, add 1440 until it is > 0.
+- If number is > 1440, subtract 1440 until it is < 1440.
+- Divide by 60 (integer division), and store the quotient and remainder in 2 variables: hours and minutes.
+- Format the hours and minutes into hh:mm format.
+- Return formatted string.
+
+=end
+
+def normalize_time(min)
+  while min < 0
+    min += 1440
+  end
+  while min > 1440
+    min -= 1440
+  end
+  min
+end
+
+# p normalize_time(0)
+# p normalize_time(-3)
+# p normalize_time(35)
+# p normalize_time(-1437)
+# p normalize_time(3000) 
+# p normalize_time(800)
+# p normalize_time(-4231)
+
+def time_of_day(min_after)
+  min_after = normalize_time(min_after)
+  hours, minutes = min_after.divmod(60)
+  format("%02d:%02d", hours, minutes)
+end
+
+p time_of_day(0) == "00:00"
+p time_of_day(-3) == "23:57"
+p time_of_day(35) == "00:35"
+p time_of_day(-1437) == "00:03"
+p time_of_day(3000) == "02:00"
+p time_of_day(800) == "13:20"
+p time_of_day(-4231) == "01:29"

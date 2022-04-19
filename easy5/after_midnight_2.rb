@@ -12,7 +12,7 @@ Outputs:
 
 Explicit Requirements
 - Inputs range from '00:00' to '24:00'.
-- Disrgard Daylight Savings and Time Zones.
+- Disregard Daylight Savings and Time Zones.
 
 Implicit Requirements
 - Input will not be blank.
@@ -40,6 +40,17 @@ before_midnight('12:34') == 686
 after_midnight('24:00') == 0
 before_midnight('24:00') == 0
 
+Example:
+Input: "12:34"
+
+after_midnight
+Output: 654
+12 * 60 + 34 = 754
+
+before_midnight
+Output: 686
+12 * 60 + 34 = 754
+1440 - 754 = 686
 
 D: Data Structure
 Strings and integers.
@@ -74,6 +85,19 @@ def before_midnight(time_str)
   # Accommodate for delta_minutes == 1440 if time_str == '00:00'
   return 0 if delta_minutes == MINUTES_PER_DAY
   delta_minutes
+end
+
+def calc_offset(time)
+  hours = time[0..1].to_i
+  minutes = time[3..4].to_i
+  offset = hours * 60 + minutes
+  offset % 1440
+end
+
+def before_midnight(time)
+  offset = calc_offset(time)
+  return 0 if offset == 0 || offset == 1440
+  1440 - offset
 end
 
 # p after_midnight('00:00')# == 0

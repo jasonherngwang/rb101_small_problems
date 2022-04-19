@@ -26,6 +26,11 @@ Sum the array elements.
 
 =end
 
+def multisum(n)
+  # (1..n).select { |x| x % 3 == 0 || x % 5 == 0}.sum
+  (1..n).select { |x| x % 3 == 0 || x % 5 == 0}.reduce(:+)
+end
+
 def multisum1(num)
   result = 0
   (1..num).each do |x|

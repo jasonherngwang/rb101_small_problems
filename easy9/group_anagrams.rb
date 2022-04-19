@@ -69,6 +69,16 @@ words =  ['demo', 'none', 'tied', 'evil', 'dome', 'mode', 'live',
   'fowl', 'veil', 'wolf', 'diet', 'vile', 'edit', 'tide',
   'flow', 'neon']
 
+# Accumulator version
+def group_anagrams(arr)
+  anagrams = []
+  word_groups = arr.map { |word| word.chars.sort }.uniq
+  word_groups.each do |grp|
+    anagrams << arr.select { |word| word.chars.sort == grp }
+  end
+  anagrams.each { |grp| p grp }
+end
+
 def group_anagrams(array)
   array.group_by { |word| word.chars.sort }
   .each_value { |group| p group }

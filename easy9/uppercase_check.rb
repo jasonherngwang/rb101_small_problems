@@ -52,8 +52,28 @@ C: Code
 =end
 
 def uppercase?(str)
+  !str.chars.any? { |char| char =~ /[a-z]/ }
+end
+
+def uppercase?(str)
+  str.chars
+    .select { |char| char =~ /[a-z]/i }
+    .all? { |char| char =~ /[A-Z]/ }
+end
+
+def uppercase?(str)
+  str.gsub(/[^a-z]/, '') == ''
+end
+
+def uppercase?(str)
   !(str =~ /[a-z]/)
 end
+
+def uppercase?(str)
+  str == str.upcase
+end
+
+
 p uppercase?('t') == false
 p uppercase?('T') == true
 p uppercase?('Four Score') == false

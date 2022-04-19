@@ -61,6 +61,14 @@ def triangle(angle1, angle2, angle3)
   return :acute if angles.all? { |a| a < 90 }
 end
 
+def triangle(a, b, c)
+  angles = [a, b, c]
+  return :invalid if angles.any? { |x| x <= 0} || angles.sum != 180
+  return :right if angles.any?(90)
+  return :acute if angles.all? { |x| x < 90 }
+  :obtuse
+end
+
 p triangle(60, 70, 50) == :acute
 p triangle(30, 90, 60) == :right
 p triangle(120, 50, 10) == :obtuse

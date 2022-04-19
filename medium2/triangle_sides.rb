@@ -98,6 +98,14 @@ def triangle(a, b, c)
   return :isosceles
 end
 
+def triangle(a, b, c)
+  a, b, c = [a, b, c].sort
+  return :invalid if [a,b,c].any?(0) || c > a + b
+  return :equilateral if [a, b, c].all? a
+  return :isosceles if a == b || b == c
+  :scalene
+end
+
 p triangle(3, 3, 3) == :equilateral
 p triangle(3, 3, 1.5) == :isosceles
 p triangle(3, 4, 5) == :scalene

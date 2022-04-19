@@ -47,6 +47,19 @@ def repeater(str)
   char_array.zip(char_array).join
 end
 
+def repeater(str)
+  chars = str.chars
+  chars.zip(chars).join('')
+end
+
+def repeater(str)
+  str.chars.map { |char| char * 2 }.join('')
+end
+
+def repeater(str)
+  str.gsub(/(.)/, '\1' * 2)
+end
+
 p repeater('Hello')# == "HHeelllloo"
 p repeater("Good job!")# == "GGoooodd  jjoobb!!"
 p repeater('')# == ''
@@ -60,6 +73,10 @@ def double_consonants(str)
     result << char if CONSONANTS.include? char.downcase
   end
   result
+end
+
+def double_consonants(str)
+  str.gsub(/([[a-z]&&[^aeiou]])/i, '\1' * 2)
 end
 
 p double_consonants('String')# == "SSttrrinngg"

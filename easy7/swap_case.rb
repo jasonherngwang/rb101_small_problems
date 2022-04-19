@@ -76,5 +76,9 @@ def swapcase(str)
   result
 end
 
+def swapcase(str)
+  str.tr([*'a'..'z',*'A'..'Z'].join, [*'A'..'Z',*'a'..'z'].join)
+end
+
 p swapcase('CamelCase') == 'cAMELcASE'
 p swapcase('Tonight on XYZ-TV') == 'tONIGHT ON xyz-tv'

@@ -3,6 +3,13 @@ P: Understand the Problem
 Problem Statement
 Write a method that averages 3 scores and returns a letter grade.
 
+A+  100
+A   [90,100)
+B   [80, 90)
+C   [70, 80)
+D   [60, 70)
+F   [0, 60)
+
 Inputs:
 - 3 numbers.
 Outputs:
@@ -34,6 +41,10 @@ A: Algorithm
 - Set up an if/elsif/else statement. Using the score bands, go from top to
   bottom. Once a conditional is met, return the corresponding grade.
 
+Second pass
+- Add 3 scores and use float division to divide by 3.
+- Check which grade range the result falls into.
+- Return the associated grade.
 C: Code
 =end
 
@@ -46,6 +57,20 @@ def get_grade(score1, score2, score3)
   return 'C' if avg >= 70
   return 'D' if avg >= 60
   'F'
+end
+
+def get_grade(score1, score2, score3)
+  scores = [score1, score2, score3]
+  avg_score = scores.sum.fdiv(scores.size)
+  
+  case avg_score
+  when 100      then 'A+'
+  when 90...100 then 'A'
+  when 80...90  then 'B'
+  when 70...80  then 'C'
+  when 60...70  then 'D'
+  else               'F'
+  end
 end
 
 p get_grade(95, 90, 93) == "A"

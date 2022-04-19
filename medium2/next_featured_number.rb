@@ -71,6 +71,7 @@ def featured(num)
     return
   end
   # Get to the next multiple of 7
+
   num += 7 - (num % 7)
   num += 7 if num.even?
 
